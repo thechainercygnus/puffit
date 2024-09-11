@@ -32,11 +32,11 @@ jobs:
 
       - name: Configure pyenv
         run: |
-          echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> $GITHUB_ENV
-          echo 'eval "$(pyenv init --path)"' >> $GITHUB_ENV
-          echo 'eval "$(pyenv init -)"' >> $GITHUB_ENV
-          echo 'eval "$(pyenv virtualenv-init -)"' >> $GITHUB_ENV
-          source $GITHUB_ENV
+          echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> $HOME/.bashrc
+          echo 'eval "$(pyenv init --path)"' >> $HOME/.bashrc
+          echo 'eval "$(pyenv init -)"' >> $HOME/.bashrc
+          echo 'eval "$(pyenv virtualenv-init -)"' >> $HOME/.bashrc
+          source $HOME/.bashrc
         shell: bash
 
       - name: Install Python with pyenv and create venv
