@@ -1,12 +1,20 @@
-format:
-	poetry run black src/
-	poetry run isort src/
+format-source:
+	python -m black src/
+	python -m isort src/
 
-lint:
-	-poetry run flake8 src/
-	-poetry run mypy src/
+format-tests:
+	python -m black tests/
+	python -m isort tests/
+
+lint-source:
+	-python -m flake8 src/
+	-python -m mypy src/
+
+lint-tests:
+	-python -m flake8 tests/
+	-python -m mypy tests/
 
 test:
-	poetry run pytest
+	python -m pytest tests
 
-all: format lint
+all: format-source format-tests lint-source lint-tests test

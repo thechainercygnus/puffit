@@ -1,8 +1,5 @@
 import re
 
-from rich import print
-from rich.pretty import pprint
-
 
 class TemplateParser:
     def __init__(self, template: str):
@@ -13,7 +10,7 @@ class TemplateParser:
             line for line in self._original.split("\n") if line.strip()
         ]
         self.line_symbol_matrix = self._generate_line_symbol_matrix()
-        self.line_index_matrix = self._generate_line_indent_matrix()
+        self.line_indent_matrix = self._generate_line_indent_matrix()
         self.indent_size = self._get_indent_size()
         self.max_indent_level = self._get_max_indent_level()
         self.minified_mapping = self._generate_minified_mapping()
@@ -45,7 +42,7 @@ class TemplateParser:
         current_path = []  # Tracks the current directory path
 
         for index, line in enumerate(self._original_lines):
-            indent_level = len(self.line_index_matrix[index]) // self.indent_size
+            indent_level = len(self.line_indent_matrix[index]) // self.indent_size
             line_type = self._get_line_type(
                 line
             )  # Use the static method to identify type
@@ -104,23 +101,15 @@ class TemplateParser:
         return [self.collapse_string(line) for line in self.line_symbol_matrix]
 
     def _get_indent_size(self):
-        indent_sizes = [len(i) for i in self.line_index_matrix if i]
+        indent_sizes = [len(i) for i in self.line_indent_matrix if i]
         if not indent_sizes:
             raise Exception("Indent Size Error: No indentation found")
         return min(indent_sizes)
 
     def _get_max_indent_level(self):
         return max(
-            len(line) // self.indent_size for line in self.line_index_matrix if line
+            len(line) // self.indent_size for line in self.line_indent_matrix if line
         )
-
-    def print_summary(self):
-        print(f"Indent Size: {self.indent_size}")
-        print(f"Max Indent Levels: {self.max_indent_level}")
-        print(f"Template:")
-        print(self._original_lines)
-        print(f"Directory:")
-        pprint(self.directory_structure, expand_all=True)
 
     @staticmethod
     def _read_template(template_path):

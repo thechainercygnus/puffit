@@ -1,0 +1,42 @@
+name: Test and Update Badges
+
+on:
+  push:
+    branches:
+      - "**"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+          poetry config virtualenvs.create false
+          poetry install --no-root
+
+      - name: Run tests with coverage
+        run: |
+          poetry run pytest --cov=src --cov-report=xml --cov-report=term
+
+      - name: Generate Coverage Badge
+        run: |
+          poetry run coverage-badge -o coverage.svg -f
+
+      - name: Update README.md with coverage badge
+        run: |
+          sed -i 's|\[!\[coverage\](.*)|\[!\[coverage\](./coverage.svg)|g' README.md
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add coverage.svg README.md
+          git commit -m "Update coverage badge"
+          git push
