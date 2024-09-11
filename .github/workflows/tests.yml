@@ -18,18 +18,14 @@ jobs:
         with:
           python-version: '3.12.5'
 
-      - name: Install Poetry
-        run: |
-          curl -sSL https://install.python-poetry.org | python3 -
-          poetry install --no-root
+      - name: Install requirements
+        run: pip install --no-chachedir -r requirements.txt
 
       - name: Run tests with coverage
-        run: |
-          poetry run pytest --cov=src --cov-report=xml --cov-report=term
+        run: python -m pytest tests --cov=src --cov-report=xml --cov-report=term
 
       - name: Generate Coverage Badge
-        run: |
-          poetry run coverage-badge -o coverage.svg -f
+        run: python -m coverage-badge -o coverage.svg -f
 
       - name: Update README.md with coverage badge
         run: |
