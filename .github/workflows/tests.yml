@@ -26,24 +26,18 @@ jobs:
           libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev \
           liblzma-dev git
 
-      - name: Install pyenv
-        run: curl https://pyenv.run | bash
-        shell: bash
-
-      - name: Configure pyenv
+      - name: Install and configure pyenv and setup venv.
         run: |
+          curl https://pyenv.run | bash
           echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> $HOME/.bashrc
           echo 'eval "$(pyenv init --path)"' >> $HOME/.bashrc
           echo 'eval "$(pyenv init -)"' >> $HOME/.bashrc
           echo 'eval "$(pyenv virtualenv-init -)"' >> $HOME/.bashrc
           source $HOME/.bashrc
-        shell: bash
-
-      - name: Install Python with pyenv and create venv
-        run: |
           pyenv install $(cat .python-version)
           pyenv exec python -m venv .venv
         shell: bash
+
 
       - name: Install Poetry
         run: |
