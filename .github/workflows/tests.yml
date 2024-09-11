@@ -18,31 +18,9 @@ jobs:
         with:
           python-version: '3.12.5'
 
-      - name: Install pyenv dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y make build-essential libssl-dev zlib1g-dev \
-          libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
-          libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev \
-          liblzma-dev git
-
-      - name: Install and configure pyenv and setup venv.
-        run: |
-          curl https://pyenv.run | bash
-          echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> $HOME/.bashrc
-          echo 'eval "$(pyenv init --path)"' >> $HOME/.bashrc
-          echo 'eval "$(pyenv init -)"' >> $HOME/.bashrc
-          echo 'eval "$(pyenv virtualenv-init -)"' >> $HOME/.bashrc
-          source $HOME/.bashrc
-          pyenv install $(cat .python-version)
-          pyenv exec python -m venv .venv
-        shell: bash
-
-
       - name: Install Poetry
         run: |
           curl -sSL https://install.python-poetry.org | python3 -
-          poetry env use $(pyenv which python)
           poetry install --no-root
 
       - name: Run tests with coverage
