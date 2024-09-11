@@ -22,6 +22,7 @@ flake8 = "^7.1.1"
 pre-commit = "^3.8.0"
 build = "^1.2.2"
 twine = "^5.1.1"
+bump2version = "^1.0.1"
 
 [tool.black]
 line-length = 88
@@ -33,6 +34,9 @@ profile = "black"
 [tool.pytest.ini_options]
 minversion = "6.0"
 addopts = "--strict-markers"
+
+[tool.poetry.scripts]
+test = "pytest"
 
 [build-system]
 requires = ["poetry-core"]

@@ -4,7 +4,7 @@
 
 I've always wanted to take an example directory structure for a project structure and pipe that into an application to make it happen. So that's what this is for.
 
-For example I would like to turn this:
+For example I would like to take this:
 
 ```
 root/
@@ -28,21 +28,19 @@ And have it turn into this:
 
 ## Features
 
-- Feature 1
-- Feature 2
-- ...
+Supports a variety of layout syntaxes.
 
 ## Installation
 
-[Installation instructions]
+pipx install puffit
 
 ## Usage
 
-[Expanded usage examples]
+Create your `template.pft` file containing the textual layout for the project. Then just run `puffit template.pft` where you'd like to create your new project directory.
 
 ## Contributing
 
-[Contribution guidelines]
+Coming Soon
 
 ## License
 
@@ -50,4 +48,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Roadmap
 
-[Future plans or upcoming features]
+* Integreate CI/CD release automation
+* Improve error handling
+* Improve documentation
+* Implement logging
