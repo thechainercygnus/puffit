@@ -41,9 +41,9 @@ jobs:
 
       - name: Install Python with pyenv and create venv
         run: |
-          source $HOME/.bashrc
           pyenv install $(cat .python-version)
           pyenv exec python -m venv .venv
+        shell: bash
 
       - name: Install Poetry
         run: |
