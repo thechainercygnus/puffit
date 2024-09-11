@@ -6,7 +6,7 @@ on:
       - "**"
 
 jobs:
-  test:
+  run-all-tests-and-update-badges:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,7 +16,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
+          python-version: '3.12.5'
 
       - name: Install pyenv dependencies
         run: |
@@ -24,7 +24,7 @@ jobs:
           sudo apt-get install -y make build-essential libssl-dev zlib1g-dev \
           libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
           libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev \
-          liblzma-dev python-openssl git
+          liblzma-dev git
 
       - name: Install pyenv
         run: curl https://pyenv.run | bash
