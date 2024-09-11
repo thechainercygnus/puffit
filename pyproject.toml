@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "pft"
+name = "puffit"
 version = "0.1.0"
 description = "pft generates directory structure from text templates"
 authors = ["Bryce Jenkins <bryce@durish.xyz>"]
@@ -12,7 +12,6 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.12"
-rich = "^13.8.1"
 
 
 [tool.poetry.group.dev.dependencies]

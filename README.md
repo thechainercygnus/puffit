@@ -1,4 +1,4 @@
-# **P**roject **F**rom **T**emplate
+# PuffIt
 
 [Badges here]
 
