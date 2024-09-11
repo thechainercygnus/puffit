@@ -1,9 +1,14 @@
 [tool.poetry]
 name = "pft"
 version = "0.1.0"
-description = ""
+description = "pft generates directory structure from text templates"
 authors = ["Bryce Jenkins <bryce@durish.xyz>"]
 readme = "README.md"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
 
 [tool.poetry.dependencies]
 python = "^3.12"
@@ -16,6 +21,8 @@ isort = "^5.13.2"
 mypy = "^1.11.2"
 flake8 = "^7.1.1"
 pre-commit = "^3.8.0"
+build = "^1.2.2"
+twine = "^5.1.1"
 
 [tool.black]
 line-length = 88

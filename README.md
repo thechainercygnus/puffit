@@ -1,5 +1,7 @@
 # **P**roject **F**rom **T**emplate
 
+[Badges here]
+
 I've always wanted to take an example directory structure for a project structure and pipe that into an application to make it happen. So that's what this is for.
 
 For example I would like to turn this:
@@ -23,3 +25,29 @@ root/
 And have it turn into this:
 
 ![alt text](/docs/imgs/image.png)
+
+## Features
+
+- Feature 1
+- Feature 2
+- ...
+
+## Installation
+
+[Installation instructions]
+
+## Usage
+
+[Expanded usage examples]
+
+## Contributing
+
+[Contribution guidelines]
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Roadmap
+
+[Future plans or upcoming features]

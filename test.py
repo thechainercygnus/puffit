@@ -2,8 +2,8 @@ import os
 
 from rich import print
 
-from src.pft.generator import ProjectGenerator
-from src.pft.parser import TemplateParser
+from src.puffit.generator import ProjectGenerator
+from src.puffit.parser import TemplateParser
 
 for template in os.listdir('templates'):
      if template.endswith('.pft'):
