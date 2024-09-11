@@ -1,0 +1,17 @@
+my_rails_app/
+├── app/
+│   ├── controllers/
+│   │   └── application_controller.rb
+│   ├── models/
+│   │   └── user.rb
+│   └── views/
+│       └── users/
+│           ├── index.html.erb
+│           └── show.html.erb
+├── config/
+│   └── routes.rb
+├── db/
+│   └── migrate/
+│       └── 20210928100000_create_users.rb
+├── Gemfile
+└── README.md

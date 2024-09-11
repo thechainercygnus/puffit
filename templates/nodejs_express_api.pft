@@ -1,0 +1,14 @@
+express_api/
+├── controllers/
+│   ├── authController.js
+│   └── userController.js
+├── models/
+│   └── User.js
+├── routes/
+│   └── userRoutes.js
+├── middlewares/
+│   └── authMiddleware.js
+├── app.js
+├── package.json
+├── .env
+└── README.md

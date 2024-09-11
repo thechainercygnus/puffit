@@ -1,0 +1,13 @@
+sinatra_app/
+    app.rb
+    config.ru
+    views/
+        index.erb
+    public/
+        css/
+            main.css
+        js/
+            app.js
+    Gemfile
+    Rakefile
+    README.md

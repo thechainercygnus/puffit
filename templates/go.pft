@@ -1,0 +1,12 @@
+my_go_project/
+    cmd/
+        main.go
+    pkg/
+        math/
+            math.go
+    internal/
+        helpers/
+            helpers.go
+    go.mod
+    go.sum
+    README.md

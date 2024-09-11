@@ -1,0 +1,15 @@
+my_java_project/
+	src/
+		main/
+			java/
+				com/
+					mycompany/
+						App.java
+		test/
+			java/
+				com/
+					mycompany/
+						AppTest.java
+	build.gradle
+	settings.gradle
+	README.md

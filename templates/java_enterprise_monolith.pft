@@ -1,0 +1,98 @@
+enterprise-app/
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/
+│   │   │       └── company/
+│   │   │           └── enterprise/
+│   │   │               ├── App.java
+│   │   │               ├── config/
+│   │   │               │   ├── DatabaseConfig.java
+│   │   │               │   ├── SecurityConfig.java
+│   │   │               │   └── WebMvcConfig.java
+│   │   │               ├── controller/
+│   │   │               │   ├── UserController.java
+│   │   │               │   ├── AdminController.java
+│   │   │               │   └── HomeController.java
+│   │   │               ├── service/
+│   │   │               │   ├── UserService.java
+│   │   │               │   ├── AdminService.java
+│   │   │               │   └── EmailService.java
+│   │   │               ├── repository/
+│   │   │               │   ├── UserRepository.java
+│   │   │               │   ├── RoleRepository.java
+│   │   │               │   └── ProductRepository.java
+│   │   │               ├── domain/
+│   │   │               │   ├── User.java
+│   │   │               │   ├── Role.java
+│   │   │               │   └── Product.java
+│   │   │               ├── dto/
+│   │   │               │   ├── UserDTO.java
+│   │   │               │   ├── RoleDTO.java
+│   │   │               │   └── ProductDTO.java
+│   │   │               ├── util/
+│   │   │               │   ├── EncryptionUtil.java
+│   │   │               │   ├── DateUtil.java
+│   │   │               │   └── FileUploadUtil.java
+│   │   │               └── exception/
+│   │   │                   ├── UserNotFoundException.java
+│   │   │                   ├── InvalidRequestException.java
+│   │   │                   └── GlobalExceptionHandler.java
+│   │   └── resources/
+│   │       ├── application.properties
+│   │       ├── messages.properties
+│   │       ├── templates/
+│   │       │   ├── index.html
+│   │       │   ├── user/
+│   │       │   │   ├── profile.html
+│   │       │   │   └── dashboard.html
+│   │       │   └── admin/
+│   │       │       ├── admin_dashboard.html
+│   │       │       └── user_management.html
+│   │       └── static/
+│   │           ├── css/
+│   │           │   ├── styles.css
+│   │           │   └── admin.css
+│   │           ├── js/
+│   │           │   ├── app.js
+│   │           │   └── dashboard.js
+│   │           └── images/
+│   │               ├── logo.png
+│   │               ├── banner.jpg
+│   │               └── icons/
+│   │                   ├── user-icon.png
+│   │                   └── admin-icon.png
+├── test/
+│   ├── java/
+│   │   └── com/
+│   │       └── company/
+│   │           └── enterprise/
+│   │               ├── controller/
+│   │               │   ├── UserControllerTest.java
+│   │               │   └── AdminControllerTest.java
+│   │               ├── service/
+│   │               │   ├── UserServiceTest.java
+│   │               │   ├── AdminServiceTest.java
+│   │               │   └── EmailServiceTest.java
+│   │               ├── repository/
+│   │               │   └── UserRepositoryTest.java
+│   │               ├── domain/
+│   │               │   └── UserTest.java
+│   │               └── util/
+│   │                   └── EncryptionUtilTest.java
+│   └── resources/
+│       └── application-test.properties
+├── logs/
+│   ├── app.log
+│   ├── error.log
+│   └── access.log
+├── lib/
+│   ├── mysql-connector-java-8.0.23.jar
+│   ├── spring-context-5.3.3.jar
+│   └── log4j-api-2.14.1.jar
+├── Dockerfile
+├── docker-compose.yml
+├── pom.xml
+├── mvnw
+├── mvnw.cmd
+└── README.md

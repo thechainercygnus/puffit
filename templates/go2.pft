@@ -1,0 +1,12 @@
+go_project/
+	src/
+		main.go
+		utils.go
+	handlers/
+		auth.go
+		database.go
+	models/
+		user.go
+	posts.go
+	go.mod
+	go.sum

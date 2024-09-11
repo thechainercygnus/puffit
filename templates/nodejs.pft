@@ -1,0 +1,12 @@
+node_app/
+    bin/
+        www
+    routes/
+        index.js
+        users.js
+    views/
+        layout.pug
+        error.pug
+    app.js
+    package.json
+    README.md

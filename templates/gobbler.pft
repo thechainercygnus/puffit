@@ -1,0 +1,13 @@
+gobbler/
+├── ingestion_tasks/
+│   ├── __init__.py
+│   ├── task_a.py
+│   └── task_b.py
+├── core/
+│   ├── app.py  # FastAPI app
+│   ├── celery_worker.py  # Celery tasks registration
+│   └── config.py  # Configuration management
+├── Dockerfile
+├── docker-compose.yml
+├── requirements.txt
+└── README.md

@@ -1,0 +1,13 @@
+react_app/
+├── src/
+│   ├── App.js
+│   ├── index.js
+│   ├── components/
+│   │   ├── Header.js
+│   │   └── Footer.js
+├── public/
+│   └── index.html
+├── node_modules/
+├── package.json
+├── webpack.config.js
+└── README.md

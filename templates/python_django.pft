@@ -1,0 +1,17 @@
+django_project/
+├── project_name/
+│   ├── __init__.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
+├── app_name/
+│   ├── migrations/
+│   │   └── __init__.py
+│   ├── models.py
+│   ├── views.py
+│   ├── forms.py
+│   └── templates/
+│       └── app_name/
+│           └── index.html
+├── manage.py
+└── requirements.txt

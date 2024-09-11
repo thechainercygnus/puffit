@@ -1,0 +1,16 @@
+flask_project/
+	app/
+		__init__.py
+		routes.py
+		models.py
+		templates/
+			base.html
+			index.html
+	static/
+		css/
+			styles.css
+	images/
+		logo.png
+	config.py
+	run.py
+	README.md

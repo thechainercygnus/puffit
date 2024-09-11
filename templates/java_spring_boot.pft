@@ -1,0 +1,18 @@
+spring_boot_project/
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   └── com/
+│   │   │       └── company/
+│   │   │           └── Application.java
+│   │   └── resources/
+│   │       ├── application.properties
+│   │       └── static/
+│   │           └── style.css
+│   └── test/
+│       └── java/
+│           └── com/
+│               └── company/
+│                   └── ApplicationTests.java
+├── pom.xml
+└── README.md

@@ -1,0 +1,16 @@
+ml_project/
+	datasets/
+		training_data.csv
+		test_data.csv
+	notebooks/
+		data_analysis.ipynb
+		model_training.ipynb
+	src/
+		__init__.py
+		train.py
+		test.py
+		model.py
+	config/
+		config.yaml
+	requirements.txt
+	README.md

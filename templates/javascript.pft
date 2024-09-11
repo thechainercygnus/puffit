@@ -1,0 +1,12 @@
+my_js_project/
+├── src/
+│   ├── index.js
+│   ├── helpers.js
+│   └── components/
+│       ├── Button.js
+│       └── Header.js
+├── public/
+│   └── index.html
+├── package.json
+├── webpack.config.js
+└── README.md
