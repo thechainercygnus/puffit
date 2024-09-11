@@ -1,6 +1,6 @@
 import pytest
 
-from src.puffit.generator import ProjectGenerator
+from puffit.generator import ProjectGenerator
 
 
 @pytest.fixture

@@ -1,6 +1,6 @@
 import pytest
 
-from src.puffit.parser import TemplateParser
+from puffit.parser import TemplateParser
 
 
 @pytest.fixture

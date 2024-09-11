@@ -35,8 +35,10 @@ target-version = ['py39']
 profile = "black"
 
 [tool.pytest.ini_options]
+addopts = "--cov=project --cov-report=term-missing --cov-report=xml --strict-markers"
+testpaths = ["tests"]
+pythonpath = ["src"]
 minversion = "6.0"
-addopts = "--strict-markers"
 
 [tool.poetry.scripts]
 test = "pytest"
