@@ -35,8 +35,8 @@ jobs:
           git add coverage.svg README.md
           git commit -m "Update coverage badge"
 
-      - name: Push changes:
-          env:
-            GITHUB_TOKEN: ${{secrets.ACTIONS_PAT}}
-          run: |
-            git push https://$GITHUB_TOKEN@github.com/${{ github.repository }} HEAD:${{ github.ref }}
+      - name: Push changes
+        env:
+          GITHUB_TOKEN: ${{secrets.ACTIONS_PAT}}
+        run: |
+          git push https://$GITHUB_TOKEN@github.com/${{ github.repository }} HEAD:${{ github.ref }}
