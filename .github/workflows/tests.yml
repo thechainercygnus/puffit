@@ -34,4 +34,9 @@ jobs:
           git config --global user.email "actions@github.com"
           git add coverage.svg README.md
           git commit -m "Update coverage badge"
-          git push
+
+      - name: Push changes:
+          env:
+            GITHUB_TOKEN: ${{secrets.ACTIONS_PAT}}
+          run: |
+            git push https://$GITHUB_TOKEN@github.com/${{ github.repository }} HEAD:${{ github.ref }}
