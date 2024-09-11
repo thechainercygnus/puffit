@@ -18,10 +18,36 @@ jobs:
         with:
           python-version: '3.10'
 
+      - name: Install pyenv dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y make build-essential libssl-dev zlib1g-dev \
+          libbz2-dev libreadline-dev libsqlite3-dev wget curl llvm \
+          libncurses5-dev libncursesw5-dev xz-utils tk-dev libffi-dev \
+          liblzma-dev python-openssl git
+
+      - name: Install pyenv
+        run: curl https://pyenv.run | bash
+        shell: bash
+
+      - name: Configure pyenv
+        run: |
+          echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> $GITHUB_ENV
+          echo 'eval "$(pyenv init --path)"' >> $GITHUB_ENV
+          echo 'eval "$(pyenv init -)"' >> $GITHUB_ENV
+          echo 'eval "$(pyenv virtualenv-init -)"' >> $GITHUB_ENV
+          source $GITHUB_ENV
+        shell: bash
+
+      - name: Install Python with pyenv and create venv
+        run: |
+          pyenv install $(cat .python-version)
+          pyenv exec python -m venv .venv
+
       - name: Install Poetry
         run: |
           curl -sSL https://install.python-poetry.org | python3 -
-          poetry config virtualenvs.create false
+          poetry env use $(pyenv which python)
           poetry install --no-root
 
       - name: Run tests with coverage
