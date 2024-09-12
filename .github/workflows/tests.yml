@@ -39,7 +39,7 @@ jobs:
         run: |
           version="${{ matrix.python-version }}"
           version_key="${version//./_}"  # Replace dot with underscore
-          echo "test_outcome_$version_key=${{ steps.test.outcome }}\n" >> $GITHUB_OUTPUT
+          echo "test_outcome_$version_key=${{ steps.test.outcome }}\n" >> $GITHUB_ENV
         id: save-result
 
   update-badges:
@@ -52,12 +52,7 @@ jobs:
 
       - name: Create and update badges
         run: |
-            39_result="${{ steps.run-tests.outputs.test_outcome_3_9 }}"
-            310_result="${{ steps.run-tests.outputs.test_outcome_3_10 }}"
-            311_result="${{ steps.run-tests.outputs.test_outcome_3_11 }}"
-            312_result="${{ steps.run-tests.outputs.test_outcome_3_12 }}"
-
-            if [[ "$39_result" == "success" ]]; then
+            if [[ "$test_outcoume_3_9" == "success" ]]; then
               echo "Generating PASS badge for Python 3.9"
               curl https://img.shields.io/badge/Python%203.9-Pass-brightgreen.svg > badges/python3.9_pass.svg
               sed -i 's|!\[Python 3.9.*|![Python 3.9](./python3.9_pass.svg)|g' README.md
@@ -67,7 +62,7 @@ jobs:
               sed -i 's|!\[Python 3.9.*|![Python 3.9](./python3.9_fail.svg)|g' README.md
             fi
 
-            if [[ "$310_result" == "success" ]]; then
+            if [[ "$test_outcoume_3_10" == "success" ]]; then
               echo "Generating PASS badge for Python 3.10"
               curl https://img.shields.io/badge/Python%203.10-Pass-brightgreen.svg > badges/python3.10_pass.svg
               sed -i 's|!\[Python 3.10.*|![Python 3.10](./python3.10_pass.svg)|g' README.md
@@ -77,7 +72,7 @@ jobs:
               sed -i 's|!\[Python 3.10.*|![Python 3.10](./python3.10_fail.svg)|g' README.md
             fi
 
-            if [[ "$311_result" == "success" ]]; then
+            if [[ "$test_outcoume_3_11" == "success" ]]; then
               echo "Generating PASS badge for Python 3.11"
               curl https://img.shields.io/badge/Python%203.11-Pass-brightgreen.svg > badges/python3.11_pass.svg
               sed -i 's|!\[Python 3.11.*|![Python 3.11](./python3.11_pass.svg)|g' README.md
@@ -87,7 +82,7 @@ jobs:
               sed -i 's|!\[Python 3.11.*|![Python 3.11](./python3.11_fail.svg)|g' README.md
             fi
 
-            if [[ "$312_result" == "success" ]]; then
+            if [[ "$test_outcoume_3_12" == "success" ]]; then
               echo "Generating PASS badge for Python 3.12"
               curl https://img.shields.io/badge/Python%203.12-Pass-brightgreen.svg > badges/python3.12_pass.svg
               sed -i 's|!\[Python 3.12.*|![Python 3.12](./badges/python3.12_pass.svg)|g' README.md
