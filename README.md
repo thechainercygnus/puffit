@@ -1,6 +1,6 @@
 # PuffIt
 
-![Python 3.9](./python3.9_pass.svg) ![Python 3.10](./python3.10_pass.svg) ![Python 3.11](./python3.11_pass.svg) ![Python 3.12](./python3.12_pass.svg) ![coverage](./coverage.svg)
+![Python 3.9](./python3.9_pass.svg)
 
 
 
