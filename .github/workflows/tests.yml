@@ -56,13 +56,13 @@ jobs:
 
           for version in "${versions[@]}"; do
             if [[ "$version" == "3.9" ]]; then
-              result="${{ needs.run-tests.outputs.test_outcome_3_9 }}"
+              result="${{ needs.run-tests.outputs['test_outcome_3_9'] }}"
             elif [[ "$version" == "3.10" ]]; then
-              result="${{ needs.run-tests.outputs.test_outcome_3_10 }}"
+              result="${{ needs.run-tests.outputs['test_outcome_3_10'] }}"
             elif [[ "$version" == "3.11" ]]; then
-              result="${{ needs.run-tests.outputs.test_outcome_3_11 }}"
+              result="${{ needs.run-tests.outputs['test_outcome_3_11'] }}"
             elif [[ "$version" == "3.12" ]]; then
-              result="${{ needs.run-tests.outputs.test_outcome_3_12 }}"
+              result="${{ needs.run-tests.outputs['test_outcome_3_12'] }}"
             fi
 
             if [[ "$result" == "success" ]]; then
