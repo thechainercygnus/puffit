@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "puffit"
-version = "0.1.0"
+version = "0.1.1"
 description = "pft generates directory structure from text templates"
 authors = ["Bryce Jenkins <bryce@durish.xyz>"]
 readme = "README.md"
