@@ -1,8 +1,8 @@
-name: Generate Code Coverage Report
+name: Code Coverage
 
 on:
   workflow_run:
-    workflows: ["Run Pytest in active Python Versions"]
+    workflows: ["Pytest"]
     branches: [main]
     types:
         - completed

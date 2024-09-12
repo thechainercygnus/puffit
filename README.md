@@ -29,7 +29,7 @@ And have it turn into this:
 ![Coverage](https://github.com/thechainercygnus/puffit/actions/workflows/coverage.yml/badge.svg) ![Format](https://github.com/thechainercygnus/puffit/actions/workflows/lint_and_format.yml/badge.svg) ![Publish](https://github.com/thechainercygnus/puffit/actions/workflows/publish.yml/badge.svg) ![Security](https://github.com/thechainercygnus/puffit/actions/workflows/security.yml/badge.svg) ![Tests](https://github.com/thechainercygnus/puffit/actions/workflows/tests.yml/badge.svg) ![Version](https://github.com/thechainercygnus/puffit/actions/workflows/version.yml/badge.svg)
 
 ### Test Status
-![Python 3.9](./docs/badges/python_39_pass.svg) ![Python 3.10](./docs/badges/python_310_pass.svg)
+![Python 3.9](./docs/badges/python_39_pass.svg) ![Python 3.10](./docs/badges/python_310_pass.svg) ![Python 3.11](./docs/badges/python_311_pass.svg) ![Python 3.12](./docs/badges/python_312_pass.svg) ![coverage](./docs/badges/coverage.svg)
 
 ## Features
 
