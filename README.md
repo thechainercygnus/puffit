@@ -26,7 +26,7 @@ And have it turn into this:
 
 
 ### GitHub Actions Status
-![Coverage](https://github.com/thechainercygnus/puffit/actions/workflows/coverage.yml/badge.svg) ![Format](https://github.com/thechainercygnus/puffit/actions/workflows/lint_and_format.yml/badge.svg) ![Publish](https://github.com/thechainercygnus/puffit/actions/workflows/publish.yml/badge.svg) ![Security](https://github.com/thechainercygnus/puffit/actions/workflows/security.yml/badge.svg) ![Version](https://github.com/thechainercygnus/puffit/actions/workflows/version.yml/badge.svg)
+![Coverage](https://github.com/thechainercygnus/puffit/actions/workflows/coverage.yml/badge.svg) ![Format](https://github.com/thechainercygnus/puffit/actions/workflows/lint_and_format.yml/badge.svg) [![Publish to PyPI](https://github.com/thechainercygnus/puffit/actions/workflows/publish.yml/badge.svg?branch=main)](https://github.com/thechainercygnus/puffit/actions/workflows/publish.yml) ![Security](https://github.com/thechainercygnus/puffit/actions/workflows/security.yml/badge.svg) ![Version](https://github.com/thechainercygnus/puffit/actions/workflows/version.yml/badge.svg)
 
 ### Test Status
 ![Tests](https://github.com/thechainercygnus/puffit/actions/workflows/tests.yml/badge.svg) ![coverage](./docs/badges/coverage.svg)
