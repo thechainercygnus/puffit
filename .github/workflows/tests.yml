@@ -35,10 +35,10 @@ jobs:
           version_key="${version//./_}"
           if [[ "${{ steps.test.outcome }}" == "success" ]]; then
             echo "Generating PASS badge for Python $version"
-            curl "https://img.shields.io/badge/Python%20$version-Pass-brightgreen.svg" -o "docs/badges/python$version_key.svg"
+            curl "https://img.shields.io/badge/Python%20$version-Pass-brightgreen.svg" -o "docs/badges/python$version_key_pass.svg"
           else
             echo "Generating FAIL badge for Python $version"
-            curl "https://img.shields.io/badge/Python%203.9-Fail-red.svg" -o "docs/badges/python$version_key.svg"
+            curl "https://img.shields.io/badge/Python%203.9-Fail-red.svg" -o "docs/badges/python$version_key_fail.svg"
           fi
         id: save-result
 
