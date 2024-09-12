@@ -4,8 +4,6 @@ on:
   push:
     tags:
       - 'v*'
-    branches:
-      - main
 
 jobs:
   publish:
@@ -20,16 +18,9 @@ jobs:
         with:
           python-version: '3.12.5'
 
-      - name: Install Poetry
+      - name: Install build dependencies
         run: |
-          curl -sSL https://install.python-poetry.org | python3 -
-          poetry config virtualenvs.create false
-
-      - name: Install dependencies
-        run: |
-          poetry export -o requirements_build.txt --without=dev
-          pip install --no-cache-dir -r requirements_build.txt
-          pip install twine
+          pip install twine build
 
       - name: Build the package
         run: |
