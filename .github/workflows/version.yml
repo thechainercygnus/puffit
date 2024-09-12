@@ -44,7 +44,7 @@ jobs:
 
       - name: Bump version
         run: |
-          poetry run bump2version ${{ steps.bump_type.outputs.version_bump }}
+          bump2version ${{ steps.bump_type.outputs.version_bump }}
 
       - name: Generate a changelog
         uses: orhun/git-cliff-action@v4
