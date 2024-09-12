@@ -54,38 +54,35 @@ jobs:
         run: |
             if [[ "$test_outcome_3_9" == "success" ]]; then
               echo "Generating PASS badge for Python 3.9"
-              curl https://img.shields.io/badge/Python%203.9-Pass-brightgreen.svg > python39.svg
+              curl https://img.shields.io/badge/Python%203.9-Pass-brightgreen.svg > docs/badges/python39.svg
             else
               echo "Generating FAIL badge for Python 3.9"
-              curl https://img.shields.io/badge/Python%203.9-Fail-red.svg > python39.svg
+              curl https://img.shields.io/badge/Python%203.9-Fail-red.svg > docs/badges/python39.svg
             fi
 
             if [[ $test_outcome_3_10 == "success" ]]; then
               echo "Generating PASS badge for Python 3.10"
-              curl https://img.shields.io/badge/Python%203.10-Pass-brightgreen.svg > python310.svg
+              curl https://img.shields.io/badge/Python%203.10-Pass-brightgreen.svg > docs/badges/python310.svg
             else
               echo "Generating FAIL badge for Python 3.10"
-              curl https://img.shields.io/badge/Python%203.10-Fail-red.svg > python310.svg
+              curl https://img.shields.io/badge/Python%203.10-Fail-red.svg > docs/badges/python310.svg
             fi
 
             if [[ $test_outcome_3_11 == "success" ]]; then
               echo "Generating PASS badge for Python 3.11"
-              curl https://img.shields.io/badge/Python%203.11-Pass-brightgreen.svg > python311.svg
+              curl https://img.shields.io/badge/Python%203.11-Pass-brightgreen.svg > docs/badges/python311.svg
             else
               echo "Generating FAIL badge for Python 3.11"
-              curl https://img.shields.io/badge/Python%203.11-Fail-red.svg > python311.svg
+              curl https://img.shields.io/badge/Python%203.11-Fail-red.svg > docs/badges/python311.svg
             fi
 
             if [[ $test_outcome_3_12 == "success" ]]; then
               echo "Generating PASS badge for Python 3.12"
-              curl https://img.shields.io/badge/Python%203.12-Pass-brightgreen.svg > python312.svg
+              curl https://img.shields.io/badge/Python%203.12-Pass-brightgreen.svg > docs/badges/python312.svg
             else
               echo "Generating FAIL badge for Python 3.12"
-              curl https://img.shields.io/badge/Python%203.12-Fail-red.svg > python312.svg
+              curl https://img.shields.io/badge/Python%203.12-Fail-red.svg > docs/badges/python312.svg
             fi
-
-            mv python3*.svg docs/badges/
-            mv python3*.svg docs/badges/
 
       - name: Commit and Push Badge Updates
         env:
@@ -93,6 +90,6 @@ jobs:
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          git add README.md ./docs/badges/python*.svg python*.svg
+          git add README.md ./docs/badges/*.svg
           git commit -m "chore: update badges for all Python versions"
           git push
