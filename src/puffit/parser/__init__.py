@@ -4,7 +4,7 @@ import re
 class TemplateParser:
     # TODO Add docstrings to TemplateParser class
     #  assignees: thechainercygnus
-    #  lables: enhancement, documentation
+    #  labels: enhancement, documentation
     def __init__(self, template: str):
         if template.endswith(".pft"):
             template = self._read_template(template)
