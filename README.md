@@ -1,6 +1,6 @@
 # PuffIt
 
-[![Test Status](https://github.com/thechainercygnus/puffit/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/thechainercygnus/puffit/actions/workflows/tests.yml)[![coverage](./coverage.svg)](./coverage.svg)
+[![Test Status](https://github.com/thechainercygnus/puffit/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/thechainercygnus/puffit/actions/workflows/tests.yml)[![coverage](./coverage.svg)
 
 
 I've always wanted to take an example directory structure for a project structure and pipe that into an application to make it happen. So that's what this is for.
