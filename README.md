@@ -1,6 +1,7 @@
 # PuffIt
 
-[![Test Status](https://github.com/thechainercygnus/puffit/actions/workflows/tests.yml/badge.svg?branch=main)](https://github.com/thechainercygnus/puffit/actions/workflows/tests.yml)[![coverage](./coverage.svg)
+![Test Suite](https://github.com/thechainercygnus/puffit/actions/workflows/tests.yml/badge.svg?branch=main) ![coverage](./coverage.svg)
+
 
 
 I've always wanted to take an example directory structure for a project structure and pipe that into an application to make it happen. So that's what this is for.
@@ -37,7 +38,7 @@ pipx install puffit
 
 ## Usage
 
-Create your `template.pft` file containing the textual layout for the project. Then just run `puffit template.pft` where you'd like to create your new project directory.
+Create your `template.pft` file containing the textual layout for the project. Then just run `puffit template.pft` where you'd like to create your new project directory. Check out `templates/` for example `.pft` files.
 
 ## Contributing
 

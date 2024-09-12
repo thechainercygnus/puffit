@@ -1,0 +1,72 @@
+name: Version Bump
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+  workflow_dispatch:  # Allows manual triggering of the workflow if needed
+
+jobs:
+  version-bump:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12.5'
+
+      - name: Install dependencies
+        run: pip install --no-cache-dir -r requirements.txt
+
+      - name: Determine version bump type
+        id: bump_type
+        run: |
+          # Default to patch if no specific label is found
+          bump="patch"
+
+          # Loop through PR labels to check for major/minor/patch
+          for label in "${{ github.event.pull_request.labels.*.name }}"; do
+            if [[ "$label" == "major" ]]; then
+              bump="major"
+            elif [[ "$label" == "minor" ]]; then
+              bump="minor"
+            fi
+          done
+
+          echo "Version bump level: $bump"
+          echo "::set-output name=version_bump::$bump"
+
+      - name: Bump version
+        run: |
+          poetry run bump2version ${{ steps.bump_type.outputs.version_bump }}
+
+      - name: Generate a changelog
+        uses: orhun/git-cliff-action@v4
+        id: git-cliff-release-entry
+        with:
+          config: cliff.toml
+          args: --verbose --strip all --tag v${{ steps.bump_type.outputs.version_bump }} --unreleased
+        env:
+          OUTPUT: CHANGES.md
+
+      - name: Commit and push changelog
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run:
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add CHANGES.md
+          git commit -m "Update changelog for ${{ steps.bump_type.outputs.version_bump }} release"
+          git push origin main
+
+      - name: Push version bump
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git push --follow-tags origin main
