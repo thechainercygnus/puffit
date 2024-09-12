@@ -32,12 +32,13 @@ jobs:
       - name: Update Badge
         run: |
           version="${{ matrix.python-version }}"
+          version_key="${version//./_}"
           if [[ "${{ steps.test.outcome }}" == "success" ]]; then
             echo "Generating PASS badge for Python $version"
-            curl https://img.shields.io/badge/Python%20$version-Pass-brightgreen.svg > docs/badges/python$version.svg
+            curl https://img.shields.io/badge/Python%20$version-Pass-brightgreen.svg > docs/badges/python$version_key.svg
           else:
             echo "Generating FAIL badge for Python $version"
-            curl https://img.shields.io/badge/Python%203.9-Fail-red.svg > docs/badges/python$version.svg
+            curl https://img.shields.io/badge/Python%203.9-Fail-red.svg > docs/badges/python$version_key.svg
         id: save-result
 
   publish-badges:
