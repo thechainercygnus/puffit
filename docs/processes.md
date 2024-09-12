@@ -12,7 +12,7 @@ This document outlines the development workflow managed by three GitHub Actions:
    - Uses `actions/checkout@v4` to pull the current branch into the workflow environment.
    
 2. **Set up Python**:
-   - Sets up Python 3.12.5 using `actions/setup-python@v4`.
+   - Sets up Python 3.12.5 using `actions/setup-python@v5`.
    
 3. **Install testing dependencies**:
    - Installs the required packages for testing, including `pytest`, `pytest-cov`, and `coverage-badge`.
@@ -41,7 +41,7 @@ This document outlines the development workflow managed by three GitHub Actions:
    - Uses `actions/checkout@v4` to retrieve the current `main` branch.
 
 2. **Set up Python**:
-   - Sets up Python 3.12.5 using `actions/setup-python@v4`.
+   - Sets up Python 3.12.5 using `actions/setup-python@v5`.
 
 3. **Install dependencies**:
    - Installs dependencies defined in the `requirements.txt` file.
@@ -66,7 +66,7 @@ This document outlines the development workflow managed by three GitHub Actions:
    - Uses `actions/checkout@v4` to pull the current state of the repository.
 
 2. **Set up Python**:
-   - Sets up Python 3.12.5 using `actions/setup-python@v4`.
+   - Sets up Python 3.12.5 using `actions/setup-python@v5`.
 
 3. **Install Poetry**:
    - Installs Poetry using the official installation script.
