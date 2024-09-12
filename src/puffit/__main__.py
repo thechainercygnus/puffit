@@ -58,6 +58,8 @@ def main(args: Optional[List[str]] = None) -> int:
 
     print(f"Project scaffold generated in {base_path}")
 
-
+# TODO Save code coverage report in automation for later review
+#  assignees: thechainercygnus
+#  labels: enhancement, research
 if __name__ == "__main__":
     main()
