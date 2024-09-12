@@ -36,7 +36,7 @@ jobs:
           if [[ "${{ steps.test.outcome }}" == "success" ]]; then
             echo "Generating PASS badge for Python $version"
             curl https://img.shields.io/badge/Python%20$version-Pass-brightgreen.svg > docs/badges/python$version_key.svg
-          else:
+          else
             echo "Generating FAIL badge for Python $version"
             curl https://img.shields.io/badge/Python%203.9-Fail-red.svg > docs/badges/python$version_key.svg
           fi
