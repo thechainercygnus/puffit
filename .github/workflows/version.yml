@@ -22,7 +22,7 @@ jobs:
           python-version: '3.12.5'
 
       - name: Install dependencies
-        run: pip install --no-cache-dir -r requirements.txt
+        run: pip install bump2version
 
       - name: Determine version bump type
         id: bump_type
