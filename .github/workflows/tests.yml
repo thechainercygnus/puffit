@@ -52,29 +52,50 @@ jobs:
 
       - name: Create and update badges
         run: |
-          versions=("3.9" "3.10" "3.11" "3.12")
+            39_result="${{ steps.run-tests.outputs.test_outcome_3_9 }}"
+            310_result="${{ steps.run-tests.outputs.test_outcome_3_10 }}"
+            311_result="${{ steps.run-tests.outputs.test_outcome_3_11 }}"
+            312_result="${{ steps.run-tests.outputs.test_outcome_3_12 }}"
 
-          for version in "${versions[@]}"; do
-            if [[ "$version" == "3.9" ]]; then
-              result="${{ steps.run-tests.outputs.test_outcome_3_9 }}"
-            elif [[ "$version" == "3.10" ]]; then
-              result="${{ steps.run-tests.outputs.test_outcome_3_10 }}"
-            elif [[ "$version" == "3.11" ]]; then
-              result="${{ steps.run-tests.outputs.test_outcome_3_11 }}"
-            elif [[ "$version" == "3.12" ]]; then
-              result="${{ steps.run-tests.outputs.test_outcome_3_12 }}"
-            fi
-
-            if [[ "$result" == "success" ]]; then
-              echo "Generating PASS badge for Python $version"
-              curl https://img.shields.io/badge/Python%20$version-Pass-brightgreen.svg > badges/python${version}_pass.svg
-              sed -i 's|!\[Python $version.*|![Python $version](./python${version}_pass.svg)|g' README.md
+            if [[ "$39_result" == "success" ]]; then
+              echo "Generating PASS badge for Python 3.9"
+              curl https://img.shields.io/badge/Python%203.9-Pass-brightgreen.svg > badges/python3.9_pass.svg
+              sed -i 's|!\[Python 3.9.*|![Python 3.9](./python3.9_pass.svg)|g' README.md
             else
-              echo "Generating FAIL badge for Python $version"
-              curl https://img.shields.io/badge/Python%20$version-Fail-red.svg > badges/python${version}_fail.svg
-              sed -i 's|!\[Python $version.*|![Python $version](./python${version}_fail.svg)|g' README.md
+              echo "Generating FAIL badge for Python 3.9"
+              curl https://img.shields.io/badge/Python%203.9-Fail-red.svg > badges/python3.9_fail.svg
+              sed -i 's|!\[Python 3.9.*|![Python 3.9](./python3.9_fail.svg)|g' README.md
             fi
-          done
+
+            if [[ "$310_result" == "success" ]]; then
+              echo "Generating PASS badge for Python 3.10"
+              curl https://img.shields.io/badge/Python%203.10-Pass-brightgreen.svg > badges/python3.10_pass.svg
+              sed -i 's|!\[Python 3.10.*|![Python 3.10](./python3.10_pass.svg)|g' README.md
+            else
+              echo "Generating FAIL badge for Python 3.10"
+              curl https://img.shields.io/badge/Python%203.10-Fail-red.svg > badges/python3.10_fail.svg
+              sed -i 's|!\[Python 3.10.*|![Python 3.10](./python3.10_fail.svg)|g' README.md
+            fi
+
+            if [[ "$311_result" == "success" ]]; then
+              echo "Generating PASS badge for Python 3.11"
+              curl https://img.shields.io/badge/Python%203.11-Pass-brightgreen.svg > badges/python3.11_pass.svg
+              sed -i 's|!\[Python 3.11.*|![Python 3.11](./python3.11_pass.svg)|g' README.md
+            else
+              echo "Generating FAIL badge for Python 3.11"
+              curl https://img.shields.io/badge/Python%203.11-Fail-red.svg > badges/python3.11_fail.svg
+              sed -i 's|!\[Python 3.11.*|![Python 3.11](./python3.11_fail.svg)|g' README.md
+            fi
+
+            if [[ "$312_result" == "success" ]]; then
+              echo "Generating PASS badge for Python 3.12"
+              curl https://img.shields.io/badge/Python%203.12-Pass-brightgreen.svg > badges/python3.12_pass.svg
+              sed -i 's|!\[Python 3.12.*|![Python 3.12](./badges/python3.12_pass.svg)|g' README.md
+            else
+              echo "Generating FAIL badge for Python 3.12"
+              curl https://img.shields.io/badge/Python%203.12-Fail-red.svg > badges/python3.12_fail.svg
+              sed -i 's|!\[Python 3.12.*|![Python 3.12](./badges/python3.12_fail.svg)|g' README.md
+            fi
 
       - name: Commit and Push Badge Updates
         env:
