@@ -31,7 +31,7 @@ jobs:
 
       - name: Update README.md with coverage badge
         run: |
-          sed -i 's|\[!\[coverage\](.*)|\[!\[coverage\](./coverage.svg)|g' README.md
+          sed -i 's|\[!\[coverage\](.*)|\[!\[coverage\](./docs/badges/coverage.svg)|g' README.md
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           git add ./docs/badges/coverage.svg README.md
