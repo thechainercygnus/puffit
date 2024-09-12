@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "puffit"
-version = "1.0.4"
+version = "1.0.5"
 description = "puffit generates directory structure from text templates"
 authors = ["Bryce Jenkins <bryce@durish.xyz>"]
 readme = "README.md"
@@ -40,7 +40,7 @@ pythonpath = ["src"]
 minversion = "6.0"
 
 [tool.poetry.scripts]
-puffit = "puffit:main"
+puffit = "puffit.__main__:main"
 
 [build-system]
 requires = ["poetry-core"]
