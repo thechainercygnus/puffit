@@ -29,6 +29,12 @@ jobs:
       - name: Generate Coverage Badge
         run: coverage-badge -o ./docs/badges/coverage.svg -f
 
+
+      - name: Update timestamp
+        run: |
+          current_timestamp=$(date +"%m/%d/%Y %H:%M")
+          sed -i 's/Tests Updated: [0-9/]\{10\} [0-9:]\{5\}/Tests Updated: $current_timestamp/' README.md
+
       - name: Update README.md with coverage badge
         run: |
           sed -i 's|\[!\[coverage\](.*)|\[!\[coverage\](./docs/badges/coverage.svg)|g' README.md
@@ -36,11 +42,6 @@ jobs:
           git config --global user.email "actions@github.com"
           git add ./docs/badges/coverage.svg README.md
           git commit -m "Update coverage badge"
-
-      - name: Update timestamp
-        run: |
-          current_timestamp=$(date +"%m/%d/%Y %H:%M")
-          sed -i 's/Tests Updated: [0-9/]\{10\} [0-9:]\{5\}/Tests Updated: $current_timestamp/' README.md
 
       - name: Push changes to branch
         env:
