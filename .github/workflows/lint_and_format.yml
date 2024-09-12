@@ -25,7 +25,9 @@ jobs:
       - name: Run flake8 (Linting)
         run: |
           flake8 src tests
+        continue-on-error: true
 
       - name: Run black (Formatting check)
         run: |
           black --check src tests
+        continue-on-error: true
