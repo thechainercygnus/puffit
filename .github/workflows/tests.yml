@@ -39,7 +39,8 @@ jobs:
         run: |
           version="${{ matrix.python-version }}"
           version_key="${version//./_}"  # Replace dot with underscore
-          echo "test_outcome_$version_key=${{ steps.test.outcome }}\n" >> $GITHUB_ENV
+          echo "test_outcome_$version_key=${{ steps.test.outcome }}"
+          echo "test_outcome_$version_key=${{ steps.test.outcome }}" >> $GITHUB_ENV
         id: save-result
 
   update-badges:
