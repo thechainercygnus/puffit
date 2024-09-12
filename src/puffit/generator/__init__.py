@@ -3,6 +3,9 @@ from pathlib import Path
 
 
 class ProjectGenerator:
+    # TODO Add docstrings to ProjectGenerator class
+    #  assignees: thechainercygnus
+    #  lables: enhancement, documentation
     def __init__(self, directory_structure: dict):
         self.directory_structure = directory_structure
 

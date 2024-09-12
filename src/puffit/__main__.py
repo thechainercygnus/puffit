@@ -16,6 +16,9 @@ def parse_arguments(args: Optional[List[str]] = None) -> argparse.Namespace:
     Returns:
         argparse.Namespace: Parsed arguments.
     """
+    # TODO Flesh out parser details and update documentation
+    #  assignees: thechainercygnus
+    #  lables: enhancement, documentation
     parser = argparse.ArgumentParser(
         prog="puffit",
         description="Generate a project scaffold based on a *.pft template in the current directory.",
@@ -42,7 +45,10 @@ def main(args: Optional[List[str]] = None) -> int:
 
     # Generate the project scaffold
     project_generator = ProjectGenerator(template_parser.directory_structure)
-    base_path = Path.cwd()  # Or any other base path you want to use
+    # TODO Implement option to pass base_path as cli arg or set as envvar
+    #  assignees: thechainercygnus
+    #  lables: enhancement
+    base_path = Path.cwd()
     project_generator.create_scaffold(base_path)
 
     print(f"Project scaffold generated in {base_path}")
