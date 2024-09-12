@@ -30,6 +30,7 @@ jobs:
       - name: Update README.md with coverage badge
         run: |
           sed -i 's|\[!\[coverage\](.*)|\[!\[coverage\](./coverage.svg)|g' README.md
+          git remote set-url origin https://x-access-token:${ACTIONS_PAT}@github.com/${{ github.repository }}.git
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           git add coverage.svg README.md
@@ -39,5 +40,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.ACTIONS_PAT }}
         run: |
-          git remote set-url origin https://x-access-token:${ACTIONS_PAT}@github.com/${{ github.repository }}.git
           git push origin HEAD:main
