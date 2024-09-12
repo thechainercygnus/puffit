@@ -25,28 +25,27 @@ jobs:
       - name: Install requirements
         run: pip install pytest pytest-cov
 
-      - name: Run tests with coverage
+      - name: Run tests
+        id: test
         run: pytest
 
-      - name: Create Success Badge for Python ${{ matrix.python-version }}
-        if: success()
+      - name: Create Badge for Python ${{ matrix.python-version }}
         run: |
-          echo "Generating PASS badge for Python ${{ matrix.python-version }}"
-          curl https://img.shields.io/badge/Python%20${{ matrix.python-version }}-Pass-brightgreen.svg > python${{ matrix.python-version }}_pass.svg
-      
-      - name: Create Failure Badge for Python ${{ matrix.python-version }}
-        if: failure()
-        run: |
-          echo "Generating FAIL badge for Python ${{ matrix.python-version }}"
-          curl https://img.shields.io/badge/Python%20${{ matrix.python-version }}-Fail-red.svg > python${{ matrix.python-version }}_fail.svg
+          if [[ ${{ steps.test.outcome }} == 'success' ]]; then
+            echo "Generating PASS badge for Python ${{ matrix.python-version }}"
+            curl https://img.shields.io/badge/Python%20${{ matrix.python-version }}-Pass-brightgreen.svg > python${{ matrix.python-version }}_pass.svg
+          else
+            echo "Generating FAIL badge for Python ${{ matrix.python-version }}"
+            curl https://img.shields.io/badge/Python%20${{ matrix.python-version }}-Fail-red.svg > python${{ matrix.python-version }}_fail.svg
+          fi
 
       - name: Update README.md
         run: |
-          echo "Updating README.md"
-          if [[ ${{ job.status }} == 'success' ]]; then
+          if [[ ${{ steps.test.outcome }} == 'success' ]]; then
             sed -i 's|!\[Python ${{ matrix.python-version }}.*|![Python ${{ matrix.python-version }}](./python${{ matrix.python-version }}_pass.svg)|g' README.md
           else
             sed -i 's|!\[Python ${{ matrix.python-version }}.*|![Python ${{ matrix.python-version }}](./python${{ matrix.python-version }}_fail.svg)|g' README.md
+          fi
 
       - name: Commit and Push Badge Updates
         env:
