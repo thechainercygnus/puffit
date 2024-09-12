@@ -6,20 +6,21 @@ on:
       - "main"
 
 jobs:
-  run-tests-39:
+  run-tests:
     runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        python-version: ['3.9', '3.10', '3.11', '3.12']
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Set up Python 3.9
+      - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
         with:
-          python-version: '3.9'
-
-      - name: Refresh local repo
-        run: git pull
+          python-version: ${{ matrix.python-version }}
 
       - name: Install requirements
         run: pip install pytest pytest-cov
@@ -27,183 +28,3 @@ jobs:
       - name: Run Pytest
         id: test
         run: pytest
-
-      - name: Update Badge
-        run: |
-          if [[ "${{ steps.test.outcome }}" == "success" ]]; then
-            echo "Generating PASS badge for Python 3.9"
-            curl "https://img.shields.io/badge/Python%203.9-Pass-brightgreen.svg" -o "docs/badges/python_39_pass.svg"
-            sed -i 's|!\[Python 3.9](./docs/badges/python_39_*.svg)|![Python 3.9](./docs/badges/python_39_pass.svg)|g' README.md
-          else
-            echo "Generating FAIL badge for Python 3.9"
-            curl "https://img.shields.io/badge/Python%203.9-Fail-red.svg" -o "docs/badges/python_39_fail.svg"
-            sed -i 's|!\[Python 3.9](./docs/badges/python_39_*.svg)|![Python 3.9](./docs/badges/python_39_fail.svg)|g' README.md
-          fi
-        id: save-result
-
-      - name: Commit and Push Badge Update
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git pull
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-          git add README.md ./docs/badges/*.svg
-          if git diff --cached --quiet; then
-            echo "No changes to commit"
-          else
-            git commit -m "chore: update badges for all Python versions"
-            git push
-          fi
-
-  run-tests-310:
-    needs: run-tests-39
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python 3.10
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.10'
-
-      - name: Refresh local repo
-        run: git pull
-
-      - name: Install requirements
-        run: pip install pytest pytest-cov
-
-      - name: Run Pytest
-        id: test
-        run: pytest
-
-      - name: Update Badge
-        run: |
-          if [[ "${{ steps.test.outcome }}" == "success" ]]; then
-            echo "Generating PASS badge for Python 3.10"
-            curl "https://img.shields.io/badge/Python%203.10-Pass-brightgreen.svg" -o "docs/badges/python_310_pass.svg"
-            sed -i 's|!\[Python 3.10](./docs/badges/python_310_*.svg)|![Python 3.10](./docs/badges/python_310_pass.svg)|g' README.md
-          else
-            echo "Generating FAIL badge for Python 3.10"
-            curl "https://img.shields.io/badge/Python%203.10-Fail-red.svg" -o "docs/badges/python_310_fail.svg"
-            sed -i 's|!\[Python 3.10](./docs/badges/python_310_*.svg)|![Python 3.10](./docs/badges/python_310_fail.svg)|g' README.md
-          fi
-        id: save-result
-
-      - name: Commit and Push Badge Update
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git pull
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-          git add README.md ./docs/badges/*.svg
-          if git diff --cached --quiet; then
-            echo "No changes to commit"
-          else
-            git commit -m "chore: update badges for all Python versions"
-            git push
-          fi
-
-  run-tests-311:
-    needs: run-tests-310
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python 3.11
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-
-      - name: Refresh local repo
-        run: git pull
-
-      - name: Install requirements
-        run: pip install pytest pytest-cov
-
-      - name: Run Pytest
-        id: test
-        run: pytest
-
-      - name: Update Badge
-        run: |
-          if [[ "${{ steps.test.outcome }}" == "success" ]]; then
-            echo "Generating PASS badge for Python 3.11"
-            curl "https://img.shields.io/badge/Python%203.11-Pass-brightgreen.svg" -o "docs/badges/python_311_pass.svg"
-            sed -i 's|!\[Python 3.11](./docs/badges/python_311_*.svg)|![Python 3.11](./docs/badges/python_311_pass.svg)|g' README.md
-          else
-            echo "Generating FAIL badge for Python 3.11"
-            curl "https://img.shields.io/badge/Python%203.11-Fail-red.svg" -o "docs/badges/python_311_fail.svg"
-            sed -i 's|!\[Python 3.11](./docs/badges/python_311_*.svg)|![Python 3.11](./docs/badges/python_311_fail.svg)|g' README.md
-          fi
-        id: save-result
-
-      - name: Commit and Push Badge Update
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-          git add README.md ./docs/badges/*.svg
-          if git diff --cached --quiet; then
-            echo "No changes to commit"
-          else
-            git commit -m "chore: update badges for all Python versions"
-            git push
-          fi
-  
-  run-tests-312:
-    needs: run-tests-311
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python 3.12
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Refresh local repo
-        run: git pull
-
-      - name: Install requirements
-        run: pip install pytest pytest-cov
-
-      - name: Run Pytest
-        id: test
-        run: pytest
-
-      - name: Update Badge
-        run: |
-          if [[ "${{ steps.test.outcome }}" == "success" ]]; then
-            echo "Generating PASS badge for Python 3.12"
-            curl "https://img.shields.io/badge/Python%203.12-Pass-brightgreen.svg" -o "docs/badges/python_312_pass.svg"
-            sed -i 's|!\[Python 3.12](./docs/badges/python_312_*.svg)|![Python 3.12](./docs/badges/python_312_pass.svg)|g' README.md
-          else
-            echo "Generating FAIL badge for Python 3.12"
-            curl "https://img.shields.io/badge/Python%203.12-Fail-red.svg" -o "docs/badges/python_312_fail.svg"
-            sed -i 's|!\[Python 3.12](./docs/badges/python_312_*.svg)|![Python 3.12](./docs/badges/python_312_fail.svg)|g' README.md
-          fi
-        id: save-result
-
-      - name: Commit and Push Badge Update
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          git pull
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-          git add README.md ./docs/badges/*.svg
-          if git diff --cached --quiet; then
-            echo "No changes to commit"
-          else
-            git commit -m "chore: update badges for all Python versions"
-            git push
-          fi
