@@ -6,7 +6,7 @@ on:
       - "**"
 
 jobs:
-  run-all-tests-and-update-badges:
+  run-tests:
     runs-on: ubuntu-latest
 
     strategy:
@@ -29,23 +29,52 @@ jobs:
         id: test
         run: pytest
 
-      - name: Create Badge for Python ${{ matrix.python-version }}
+      - name: Store test result for ${{ matrix.python-version }}
+        id: result
         run: |
-          if [[ ${{ steps.test.outcome }} == 'success' ]]; then
-            echo "Generating PASS badge for Python ${{ matrix.python-version }}"
-            curl https://img.shields.io/badge/Python%20${{ matrix.python-version }}-Pass-brightgreen.svg > python${{ matrix.python-version }}_pass.svg
-          else
-            echo "Generating FAIL badge for Python ${{ matrix.python-version }}"
-            curl https://img.shields.io/badge/Python%20${{ matrix.python-version }}-Fail-red.svg > python${{ matrix.python-version }}_fail.svg
-          fi
+          echo "Test outcome for Python ${{ matrix.python-version }}: ${{ steps.test.outcome }}"
+        continue-on-error: true
 
-      - name: Update README.md
+      - name: Save result
         run: |
-          if [[ ${{ steps.test.outcome }} == 'success' ]]; then
-            sed -i 's|!\[Python ${{ matrix.python-version }}.*|![Python ${{ matrix.python-version }}](./python${{ matrix.python-version }}_pass.svg)|g' README.md
-          else
-            sed -i 's|!\[Python ${{ matrix.python-version }}.*|![Python ${{ matrix.python-version }}](./python${{ matrix.python-version }}_fail.svg)|g' README.md
-          fi
+          version="${{ matrix.python-version }}"
+          version_key="${version//./_}"  # Replace dot with underscore
+          echo "::set-output name=test_outcome_$version_key::${{ steps.test.outcome }}"
+        id: save-result
+
+  update-badges:
+    runs-on: ubuntu-latest
+    needs: run-tests
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Create and update badges
+        run: |
+          versions=("3.9" "3.10" "3.11" "3.12")
+
+          for version in "${versions[@]}"; do
+            if [[ "$version" == "3.9" ]]; then
+              result="${{ needs.run-tests.outputs.test_outcome_3_9 }}"
+            elif [[ "$version" == "3.10" ]]; then
+              result="${{ needs.run-tests.outputs.test_outcome_3_10 }}"
+            elif [[ "$version" == "3.11" ]]; then
+              result="${{ needs.run-tests.outputs.test_outcome_3_11 }}"
+            elif [[ "$version" == "3.12" ]]; then
+              result="${{ needs.run-tests.outputs.test_outcome_3_12 }}"
+            fi
+
+            if [[ "$result" == "success" ]]; then
+              echo "Generating PASS badge for Python $version"
+              curl https://img.shields.io/badge/Python%20$version-Pass-brightgreen.svg > python${version}_pass.svg
+              sed -i 's|!\[Python $version.*|![Python $version](./python${version}_pass.svg)|g' README.md
+            else
+              echo "Generating FAIL badge for Python $version"
+              curl https://img.shields.io/badge/Python%20$version-Fail-red.svg > python${version}_fail.svg
+              sed -i 's|!\[Python $version.*|![Python $version](./python${version}_fail.svg)|g' README.md
+            fi
+          done
 
       - name: Commit and Push Badge Updates
         env:
@@ -53,6 +82,6 @@ jobs:
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          git add README.md python${{ matrix.python-version }}_*.svg
-          git commit -m "chore: update badges for Python ${{ matrix.python-version }}"
+          git add README.md python*_pass.svg python*_fail.svg
+          git commit -m "chore: update badges for all Python versions"
           git push
