@@ -54,43 +54,46 @@ jobs:
         run: |
             if [[ "$test_outcoume_3_9" == "success" ]]; then
               echo "Generating PASS badge for Python 3.9"
-              curl https://img.shields.io/badge/Python%203.9-Pass-brightgreen.svg > ./badges/python3.9_pass.svg
-              sed -i 's|!\[Python 3.9.*|![Python 3.9](./python3.9_pass.svg)|g' README.md
+              curl https://img.shields.io/badge/Python%203.9-Pass-brightgreen.svg > python3.9.svg
+              sed -i 's|!\[Python 3.9.*|![Python 3.9](./docs/badges/python3.9.svg)|g' README.md
             else
               echo "Generating FAIL badge for Python 3.9"
-              curl https://img.shields.io/badge/Python%203.9-Fail-red.svg > ./badges/python3.9_fail.svg
-              sed -i 's|!\[Python 3.9.*|![Python 3.9](./python3.9_fail.svg)|g' README.md
+              curl https://img.shields.io/badge/Python%203.9-Fail-red.svg > python3.9.svg
+              sed -i 's|!\[Python 3.9.*|![Python 3.9](./docs/badges/python3.9.svg)|g' README.md
             fi
 
             if [[ $test_outcoume_3_10 == "success" ]]; then
               echo "Generating PASS badge for Python 3.10"
-              curl https://img.shields.io/badge/Python%203.10-Pass-brightgreen.svg > ./badges/python3.10_pass.svg
-              sed -i 's|!\[Python 3.10.*|![Python 3.10](./python3.10_pass.svg)|g' README.md
+              curl https://img.shields.io/badge/Python%203.10-Pass-brightgreen.svg > python3.10.svg
+              sed -i 's|!\[Python 3.10.*|![Python 3.10](./docs/badges/python3.10.svg)|g' README.md
             else
               echo "Generating FAIL badge for Python 3.10"
-              curl https://img.shields.io/badge/Python%203.10-Fail-red.svg > ./badges/python3.10_fail.svg
-              sed -i 's|!\[Python 3.10.*|![Python 3.10](./python3.10_fail.svg)|g' README.md
+              curl https://img.shields.io/badge/Python%203.10-Fail-red.svg > python3.10.svg
+              sed -i 's|!\[Python 3.10.*|![Python 3.10](./docs/badges/python3.10.svg)|g' README.md
             fi
 
             if [[ $test_outcoume_3_11 == "success" ]]; then
               echo "Generating PASS badge for Python 3.11"
-              curl https://img.shields.io/badge/Python%203.11-Pass-brightgreen.svg > ./badges/python3.11_pass.svg
-              sed -i 's|!\[Python 3.11.*|![Python 3.11](./python3.11_pass.svg)|g' README.md
+              curl https://img.shields.io/badge/Python%203.11-Pass-brightgreen.svg > python3.11.svg
+              sed -i 's|!\[Python 3.11.*|![Python 3.11](./docs/badges/python3.11.svg)|g' README.md
             else
               echo "Generating FAIL badge for Python 3.11"
-              curl https://img.shields.io/badge/Python%203.11-Fail-red.svg > ./badges/python3.11_fail.svg
-              sed -i 's|!\[Python 3.11.*|![Python 3.11](./python3.11_fail.svg)|g' README.md
+              curl https://img.shields.io/badge/Python%203.11-Fail-red.svg > python3.11.svg
+              sed -i 's|!\[Python 3.11.*|![Python 3.11](./docs/badgespython3.11.svg)|g' README.md
             fi
 
             if [[ $test_outcoume_3_12 == "success" ]]; then
               echo "Generating PASS badge for Python 3.12"
-              curl https://img.shields.io/badge/Python%203.12-Pass-brightgreen.svg > ./badges/python3.12_pass.svg
-              sed -i 's|!\[Python 3.12.*|![Python 3.12](././badges/python3.12_pass.svg)|g' README.md
+              curl https://img.shields.io/badge/Python%203.12-Pass-brightgreen.svg > python3.12.svg
+              sed -i 's|!\[Python 3.12.*|![Python 3.12](./docs/badges/python3.12.svg)|g' README.md
             else
               echo "Generating FAIL badge for Python 3.12"
-              curl https://img.shields.io/badge/Python%203.12-Fail-red.svg > ./badges/python3.12_fail.svg
-              sed -i 's|!\[Python 3.12.*|![Python 3.12](././badges/python3.12_fail.svg)|g' README.md
+              curl https://img.shields.io/badge/Python%203.12-Fail-red.svg > python3.12.svg
+              sed -i 's|!\[Python 3.12.*|![Python 3.12](./docs/badges/python3.12.svg)|g' README.md
             fi
+
+            mv python3.*.svg docs/badges/
+            mv python3.*.svg docs/badges/
 
       - name: Commit and Push Badge Updates
         env:
@@ -98,6 +101,6 @@ jobs:
         run: |
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
-          git add README.md badges\python*_pass.svg python*_fail.svg
+          git add README.md ./docs/badges/python*.svg python*.svg
           git commit -m "chore: update badges for all Python versions"
           git push
