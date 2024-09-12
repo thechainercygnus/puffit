@@ -30,11 +30,11 @@ jobs:
           if [[ "${{ steps.test.outcome }}" == "success" ]]; then
             echo "Generating PASS badge for Python 3.9"
             curl "https://img.shields.io/badge/Python%203.9-Pass-brightgreen.svg" -o "docs/badges/python_39_pass.svg"
-            sed -i 's|!\[Python 3.9.*|![Python 3.9](./docs/badges/python_39_pass.svg)|g' README.md
+            sed -i 's|!\[Python 3.9](./docs/badges/python_39_*.svg)|![Python 3.9](./docs/badges/python_39_pass.svg)|g' README.md
           else
             echo "Generating FAIL badge for Python 3.9"
             curl "https://img.shields.io/badge/Python%203.9-Fail-red.svg" -o "docs/badges/python_39_fail.svg"
-            sed -i 's|!\[Python 3.9.*|![Python 3.9](./docs/badges/python_39_fail.svg)|g' README.md
+            sed -i 's|!\[Python 3.9](./docs/badges/python_39_*.svg)|![Python 3.9](./docs/badges/python_39_fail.svg)|g' README.md
           fi
         id: save-result
 

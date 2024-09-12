@@ -1,9 +1,5 @@
 # PuffIt
 
-![Python 3.9](./docs/badges/python_39_pass.svg)
-
-
-
 I've always wanted to take an example directory structure for a project structure and pipe that into an application to make it happen. So that's what this is for.
 
 For example I would like to take this:
@@ -27,6 +23,13 @@ root/
 And have it turn into this:
 
 ![alt text](/docs/imgs/image.png)
+
+
+### GitHub Actions Status
+![Coverage](https://github.com/thechainerygnus/puffit/actions/workflows/coverage.yml/badge.svg) ![Format](https://github.com/thechainerygnus/puffit/actions/workflows/lint_and_format.yml/badge.svg) ![Publish](https://github.com/thechainerygnus/puffit/actions/workflows/publish.yml/badge.svg) ![Security](https://github.com/thechainerygnus/puffit/actions/workflows/security.yml/badge.svg) ![Tests](https://github.com/thechainerygnus/puffit/actions/workflows/tests.yml/badge.svg) ![Version](https://github.com/thechainerygnus/puffit/actions/workflows/version.yml/badge.svg)
+
+### Test Status
+![Python 3.9](./docs/badges/python_39_pass.svg) ![Python 3.10](./docs/badges/python_310_pass.svg) ![Python 3.11](./docs/badges/python_311_pass.svg) ![Python 3.12](./docs/badges/python_312_pass.svg) ![coverage](./docs/badges/coverage.svg)
 
 ## Features
 
