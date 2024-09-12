@@ -19,7 +19,7 @@ class TemplateParser:
         )  # Build the directory structure
 
     def _clean_input(self, template: str) -> str:
-        """Clean the input by removing non-alphanumeric characters and handling comments."""
+        """Clean the input by removing non-alphanumeric characters and comments."""
         lines = template.splitlines()
         cleaned_lines = []
 
@@ -30,7 +30,7 @@ class TemplateParser:
             # Replace any non-alphanumeric or non-ASCII characters except spaces
             cleaned_line = re.sub(r"[^\w\s/.-]", " ", line)
 
-            # Ensure the line doesn't start with or contain excess spaces due to replacements
+            # Ensure the line doesn't end with excess spaces due to replacements
             cleaned_line = cleaned_line.rstrip()
 
             cleaned_lines.append(cleaned_line)
@@ -118,7 +118,7 @@ class TemplateParser:
 
     @staticmethod
     def _get_line_type(line: str):
-        """Determine if the line represents a directory or file based on its last meaningful character."""
+        """Determine if the line represents a directory or file."""
         stripped_line = line.rstrip()  # Remove trailing whitespace
         return "D" if stripped_line.endswith("/") else "F"
 
