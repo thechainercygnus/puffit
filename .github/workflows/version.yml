@@ -50,24 +50,3 @@ jobs:
       - name: Bump version
         run: |
           bump2version ${{ steps.bump_type.outputs.version_bump }}
-
-      - name: Generate a changelog
-        uses: orhun/git-cliff-action@v4
-        id: git-cliff-release-entry
-        with:
-          config: cliff.toml
-          args: --verbose --strip all --tag v${{ steps.bump_type.outputs.version_bump }} --unreleased
-        env:
-          OUTPUT: CHANGES.md
-
-      - name: Push version bump and changelog
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          if [[ -n $(git status --porcelain) ]]; then
-            git add CHANGES.md
-            git commit -m "Update changelog for ${{ steps.bump_type.outputs.version_bump }} release"
-            git push --follow-tags origin main
-          else
-            echo "Working tree is clean."
-          fi
