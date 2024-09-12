@@ -84,11 +84,6 @@ jobs:
               curl https://img.shields.io/badge/Python%203.12-Fail-red.svg > docs/badges/python312.svg
             fi
 
-      - name: Update timestamp
-        run: |
-          current_timestamp=$(date +"%m/%d/%Y %H:%M")
-          sed -i 's/Tests Updated: [0-9/]\{10\} [0-9:]\{5\}/Tests Updated: $current_timestamp/' README.md
-
       - name: Commit and Push Badge Updates
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -96,5 +91,9 @@ jobs:
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           git add README.md ./docs/badges/*.svg
-          git commit -m "chore: update badges for all Python versions"
-          git push
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: update badges for all Python versions"
+            git push
+          fi

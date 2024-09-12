@@ -29,24 +29,20 @@ jobs:
       - name: Generate Coverage Badge
         run: coverage-badge -o ./docs/badges/coverage.svg -f
 
-
-      - name: Update timestamp
-        run: |
-          current_timestamp=$(date +"%m/%d/%Y %H:%M")
-          sed -i 's/Tests Updated: [0-9/]\{10\} [0-9:]\{5\}/Tests Updated: $current_timestamp/' README.md
-
-      - name: Update README.md with coverage badge
-        run: |
-          sed -i 's|\[!\[coverage\](.*)|\[!\[coverage\](./docs/badges/coverage.svg)|g' README.md
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-          git add ./docs/badges/coverage.svg README.md
-          git commit -m "Update coverage badge"
-
-      - name: Push changes to branch
+      - name: Push change to coverage badge
         env:
           GITHUB_TOKEN: ${{ secrets.ACTIONS_PAT }}
           BRANCH_NAME: ${{ github.base_ref || github.ref_name }} 
         run: |
-          git remote set-url origin https://x-access-token:${ACTIONS_PAT}@github.com/${{ github.repository }}.git
-          git push origin HEAD:${{ env.BRANCH_NAME }}
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          
+          git add ./docs/badges/coverage.svg README.md
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Update coverage badge"
+            git remote set-url origin https://x-access-token:${ACTIONS_PAT}@github.com/${{ github.repository }}.git
+            git push origin HEAD:${{ env.BRANCH_NAME }}
+          fi
