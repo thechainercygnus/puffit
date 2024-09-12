@@ -9,7 +9,7 @@ This document outlines the development workflow managed by three GitHub Actions:
 
 ### Steps:
 1. **Checkout the repository**:
-   - Uses `actions/checkout@v3` to pull the current branch into the workflow environment.
+   - Uses `actions/checkout@v4` to pull the current branch into the workflow environment.
    
 2. **Set up Python**:
    - Sets up Python 3.12.5 using `actions/setup-python@v4`.
@@ -38,7 +38,7 @@ This document outlines the development workflow managed by three GitHub Actions:
 
 ### Steps:
 1. **Checkout the repository**:
-   - Uses `actions/checkout@v3` to retrieve the current `main` branch.
+   - Uses `actions/checkout@v4` to retrieve the current `main` branch.
 
 2. **Set up Python**:
    - Sets up Python 3.12.5 using `actions/setup-python@v4`.
@@ -63,7 +63,7 @@ This document outlines the development workflow managed by three GitHub Actions:
 
 ### Steps:
 1. **Checkout the repository**:
-   - Uses `actions/checkout@v3` to pull the current state of the repository.
+   - Uses `actions/checkout@v4` to pull the current state of the repository.
 
 2. **Set up Python**:
    - Sets up Python 3.12.5 using `actions/setup-python@v4`.
