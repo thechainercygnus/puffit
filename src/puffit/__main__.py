@@ -16,6 +16,9 @@ def parse_arguments(args: Optional[List[str]] = None) -> argparse.Namespace:
     Returns:
         argparse.Namespace: Parsed arguments.
     """
+    # TODO Flesh out parser details and update documentation
+    #  assignees: thechainercygnus
+    #  lables: enhancement, documentation
     parser = argparse.ArgumentParser(
         prog="puffit",
         description="Generate a project scaffold based on a *.pft template in the current directory.",
