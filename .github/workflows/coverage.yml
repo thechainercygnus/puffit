@@ -1,0 +1,46 @@
+name: Coverage
+
+on:
+  workflow_run:
+    workflows: ["Pytest"]
+    branches: [main]
+    types:
+        - completed
+
+jobs:
+  run-all-tests-and-update-badges:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.12.5
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12.5'
+
+      - name: Install requirements
+        run: pip install pytest pytest-cov coverage-badge
+
+      - name: Run tests with coverage
+        run: pytest tests --cov=src --cov-report=xml --cov-report=term
+
+      - name: Generate Coverage Badge
+        run: coverage-badge -o coverage.svg -f
+
+      - name: Update README.md with coverage badge
+        run: |
+          sed -i 's|\[!\[coverage\](.*)|\[!\[coverage\](./coverage.svg)|g' README.md
+          git config --global user.name "GitHub Actions"
+          git config --global user.email "actions@github.com"
+          git add coverage.svg README.md
+          git commit -m "Update coverage badge"
+          
+      - name: Push changes to branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.ACTIONS_PAT }}
+          BRANCH_NAME: ${{ github.base_ref || github.ref_name }} 
+        run: |
+          git remote set-url origin https://x-access-token:${ACTIONS_PAT}@github.com/${{ github.repository }}.git
+          git push origin HEAD:${{ env.BRANCH_NAME }}
