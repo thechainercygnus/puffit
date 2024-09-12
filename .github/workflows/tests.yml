@@ -39,6 +39,7 @@ jobs:
           else:
             echo "Generating FAIL badge for Python $version"
             curl https://img.shields.io/badge/Python%203.9-Fail-red.svg > docs/badges/python$version_key.svg
+          fi
         id: save-result
 
   publish-badges:
