@@ -1,6 +1,6 @@
 # PuffIt
 
-![Python 3.9](./docs/badges/python_39_pass.svg) ![Python 3.10](./docs/badges/python_310_pass.svg) ![Python 3.11](./docs/badges/python_311_pass.svg) ![Python 3.12](./docs/badges/python_312_pass.svg) ![coverage](./docs/badges/coverage.svg)
+![Python 3.9](./docs/badges/python_39_pass.svg)
 
 
 
