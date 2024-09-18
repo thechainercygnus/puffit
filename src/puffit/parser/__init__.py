@@ -6,6 +6,9 @@ class TemplateParser:
     #  assignees: thechainercygnus
     #  labels: enhancement, documentation
     def __init__(self, template: str):
+        # TODO Test SonarQube
+        #  assignees: thechainercygnus
+        #  labels: enhancement, documentation, tests
         if template.endswith(".pft"):
             template = self._read_template(template)
         self._original = self._clean_input(template)  # Clean the input data
